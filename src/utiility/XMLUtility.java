@@ -5,24 +5,35 @@
  */
 package utiility;
 
-import java.io.IOException;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
+import javax.xml.transform.OutputKeys;
+import model.XMLTag;
+
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Iterator;
+
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Result;
+import javax.xml.transform.Source;
 import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
-import model.XMLTag;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+import org.xml.sax.InputSource;
+import org.xml.sax.SAXException;
 
 /**
  *
@@ -120,6 +131,35 @@ public class XMLUtility {
 
         transformer.transform(new DOMSource(doc),
                 new StreamResult(new OutputStreamWriter(out, "UTF-8")));
+    }
+
+    /**
+     * Various XML utilities.
+     *
+     * @author simonjsmith, ksim
+     * @version 1.1 - ksim - March 6th, 2007 - Added functions regarding
+     * streaming
+     * @version 1.2 - ksim - March 10th, 2007 - Added functions regarding DOM
+     * manipulation
+     * @param in 
+     * @return
+     * @throws org.xml.sax.SAXException
+     * @throws java.io.IOException
+     * @throws javax.xml.parsers.ParserConfigurationException
+     */
+    public static Document newDocumentFromInputStream(InputStream in) throws SAXException, IOException, ParserConfigurationException {
+        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder builder = factory.newDocumentBuilder();
+        Document ret = builder.parse(new InputSource(in));
+        return ret;
+    }
+
+    public static InputStream newInputStreamFromDocument(Document doc) throws TransformerConfigurationException, TransformerException {
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        Source xmlSource = new DOMSource(doc);
+        Result outputTarget = new StreamResult(outputStream);
+        TransformerFactory.newInstance().newTransformer().transform(xmlSource, outputTarget);
+        return new ByteArrayInputStream(outputStream.toByteArray());
     }
 
 }
