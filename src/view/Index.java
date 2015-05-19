@@ -5,8 +5,10 @@
  */
 package view;
 
+import bin.MetadataParser;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -229,7 +231,8 @@ public class Index extends javax.swing.JFrame {
     }//GEN-LAST:event_btnReadActionPerformed
 
     private void btnFixActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFixActionPerformed
-        // TODO add your handling code here:
+        String[] arrData = {txtFolderProyect.getText()};
+        MetadataParser.main(arrData);
     }//GEN-LAST:event_btnFixActionPerformed
 
     /**

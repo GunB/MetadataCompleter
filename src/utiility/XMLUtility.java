@@ -90,7 +90,6 @@ public class XMLUtility {
 
     public static NodeList ChangeNode(NodeList listNode, ArrayList<String> arrStrCompare, String strNewValue) {
 
-        NodeList tempNode = listNode;
         ArrayList<String> arrTempList = arrStrCompare;
         Iterator<String> iterator = arrTempList.iterator();
 
@@ -120,6 +119,36 @@ public class XMLUtility {
         return listNode;
     }
 
+    public static String ReadNode(NodeList listNode, ArrayList<String> arrStrCompare) {
+
+        ArrayList<String> arrTempList = arrStrCompare;
+        Iterator<String> iterator = arrTempList.iterator();
+
+        while (iterator.hasNext()) {
+            String strCompare = iterator.next();
+            iterator.remove();
+
+            for (int i = 0; i < listNode.getLength(); i++) {
+                Node node = listNode.item(i);
+                // get the salary element, and update the value
+
+                //System.out.println(node.getNodeName() + " " + strCompare);
+                if (strCompare.equals(node.getNodeName())) {
+
+                    if (iterator.hasNext()) {
+                        return ReadNode(node.getChildNodes(), arrTempList);
+                    } else {
+                        String strResp = node.getTextContent();
+                        System.out.println("Found DATA [" + strCompare + "]: " + strResp);
+                        return strResp;
+                    }
+                }
+            }
+        }
+        
+        return null;
+    }
+
     public static void printDocument(Document doc, OutputStream out) throws IOException, TransformerException {
         TransformerFactory tf = TransformerFactory.newInstance();
         Transformer transformer = tf.newTransformer();
@@ -141,7 +170,7 @@ public class XMLUtility {
      * streaming
      * @version 1.2 - ksim - March 10th, 2007 - Added functions regarding DOM
      * manipulation
-     * @param in 
+     * @param in
      * @return
      * @throws org.xml.sax.SAXException
      * @throws java.io.IOException
