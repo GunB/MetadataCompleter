@@ -72,36 +72,71 @@ public class ZipReader implements ElementHandler {
      */
     @Override
     public void WriteFinish(Document doc) throws IOException, TransformerException {
-        String strZipFile = strPath.concat(File.separator).concat(strName);
-        Path pathZipFile = Paths.get(strZipFile);
+        String strFile = strPath.concat(File.separator).concat(strName);
+        ZipFile zipFile = new ZipFile(strFile);
+        
+        String strNewFile = strPath.concat(File.separator).concat(strNewSufij).concat(strName);
+        final ZipOutputStream zos = new ZipOutputStream(new FileOutputStream(strNewFile));
+        
+        for (Enumeration e = zipFile.entries(); e.hasMoreElements();) {
+            ZipEntry entryIn = new ZipEntry((ZipEntry) e.nextElement());
+            
+            if (!entryIn.getName().equalsIgnoreCase(strFile2Change)) {
+                zos.putNextEntry(entryIn);
+                InputStream is = zipFile.getInputStream(entryIn);
+                byte[] buf = new byte[1024];
+                int len;
+                while ((len = (is.read(buf))) > 0) {
+                    zos.write(buf, 0, len);
+                }
+            } else {
+                zos.putNextEntry(new ZipEntry(strFile2Change));
+
+                InputStream is = zipFile.getInputStream(entryIn);
+                byte[] buf = new byte[1024];
+                int len;
+                while ((len = (is.read(buf))) > 0) {
+                    String s = new String(buf);
+                    if (s.contains("key1=value1")) {
+                        buf = s.replaceAll("key1=value1", "key1=val2").getBytes();
+                    }
+                    zos.write(buf, 0, (len < buf.length) ? len : buf.length);
+                }//*/
+            }
+            zos.closeEntry();
+        }
+        zos.close();
+
+        /*String strZipFile = strPath.concat(File.separator).concat(strName);
+         Path pathZipFile = Paths.get(strZipFile);
         
         
-        //Path myFilePath = Paths.get("c:/dump2/mytextfile.txt");
+         //Path myFilePath = Paths.get("c:/dump2/mytextfile.txt");
 
         
         
-        try (FileSystem fs = FileSystems.newFileSystem(pathZipFile, null)) {
-            Path fileInsideZipPath = fs.getPath(File.separator.concat(strFile2Change));
-            Files.copy(XMLUtility.newInputStreamFromDocument(doc), pathZipFile, new CopyOption() {});
-            //Files.copy(myFilePath, fileInsideZipPath);
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+         try (FileSystem fs = FileSystems.newFileSystem(pathZipFile, null)) {
+         Path fileInsideZipPath = fs.getPath(File.separator.concat(strFile2Change));
+         Files.copy(XMLUtility.newInputStreamFromDocument(doc), pathZipFile, new CopyOption() {});
+         //Files.copy(myFilePath, fileInsideZipPath);
+         } catch (IOException e) {
+         // TODO Auto-generated catch block
+         e.printStackTrace();
+         }*/
     }
 
     public static void main(String[] argv) {
         /*Path myFilePath = Paths.get("c:/dump2/mytextfile.txt");
 
-        Path zipFilePath = Paths.get("c:/dump2/myarchive.zip");
-        try (FileSystem fs = FileSystems.newFileSystem(zipFilePath, null)) {
-            Path fileInsideZipPath = fs.getPath("/mytextfile.txt");
-            Files.copy(null, myFilePath, options)
-            //Files.copy(myFilePath, fileInsideZipPath);
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }*/
+         Path zipFilePath = Paths.get("c:/dump2/myarchive.zip");
+         try (FileSystem fs = FileSystems.newFileSystem(zipFilePath, null)) {
+         Path fileInsideZipPath = fs.getPath("/mytextfile.txt");
+         Files.copy(null, myFilePath, options)
+         //Files.copy(myFilePath, fileInsideZipPath);
+         } catch (IOException e) {
+         // TODO Auto-generated catch block
+         e.printStackTrace();
+         }*/
     }
 
 }
