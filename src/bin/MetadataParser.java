@@ -71,14 +71,23 @@ public class MetadataParser {
         for (SharableContentObject scoData : arrScos) {
             scoObjeto.SetRelation(scoData, "Está compuesto por");
         }
-        
-        for(SharableContentObject scoData: arrScos){
+
+        for (SharableContentObject scoData : arrScos) {
             try {
                 scoData.SaveChanges();
             } catch (IOException | TransformerException ex) {
                 Logger.getLogger(MetadataParser.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+
+        try {
+            scoObjeto.SaveChanges();
+        } catch (IOException | TransformerException ex) {
+            Logger.getLogger(MetadataParser.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        JOptionPane.showMessageDialog(null, "Terminado :D");
+        System.exit(0);
 
     }
 

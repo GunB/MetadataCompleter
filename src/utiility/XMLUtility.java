@@ -7,6 +7,9 @@ package utiility;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import javax.xml.transform.OutputKeys;
@@ -14,6 +17,7 @@ import model.XMLTag;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -145,7 +149,7 @@ public class XMLUtility {
                 }
             }
         }
-        
+
         return null;
     }
 
@@ -189,6 +193,16 @@ public class XMLUtility {
         Result outputTarget = new StreamResult(outputStream);
         TransformerFactory.newInstance().newTransformer().transform(xmlSource, outputTarget);
         return new ByteArrayInputStream(outputStream.toByteArray());
+    }
+
+    public static String newStringFromDocument(Document doc) throws TransformerConfigurationException, TransformerException {
+        TransformerFactory tf = TransformerFactory.newInstance();
+        Transformer transformer = tf.newTransformer();
+        transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes");
+        StringWriter writer = new StringWriter();
+        transformer.transform(new DOMSource(doc), new StreamResult(writer));
+        String output = writer.getBuffer().toString().replaceAll("\n|\r", "");
+        return output;
     }
 
 }

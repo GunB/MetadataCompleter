@@ -114,24 +114,32 @@ public class Index extends javax.swing.JFrame {
 
         tblData.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null}
             },
             new String [] {
-                "FILES", "VALID"
+                "FILES"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Boolean.class
+                java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false
+                false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -145,9 +153,6 @@ public class Index extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tblData);
         if (tblData.getColumnModel().getColumnCount() > 0) {
             tblData.getColumnModel().getColumn(0).setResizable(false);
-            tblData.getColumnModel().getColumn(1).setMinWidth(50);
-            tblData.getColumnModel().getColumn(1).setPreferredWidth(50);
-            tblData.getColumnModel().getColumn(1).setMaxWidth(50);
         }
 
         btnFix.setText("Fix!");

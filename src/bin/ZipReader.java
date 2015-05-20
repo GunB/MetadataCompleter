@@ -34,7 +34,7 @@ public class ZipReader implements ElementHandler {
 
     String strPath;
     String strName;
-    String strNewSufij = "New_";
+    String strNewSufij = "New" + File.separator;
     String strFile2Change = "metadata.xml";
 
     //ZipOutputStream zos;
@@ -69,20 +69,28 @@ public class ZipReader implements ElementHandler {
      *
      * @param doc
      * @throws IOException
+     * @throws javax.xml.transform.TransformerException
      */
     @Override
     public void WriteFinish(Document doc) throws IOException, TransformerException {
         String strFile = strPath.concat(File.separator).concat(strName);
         ZipFile zipFile = new ZipFile(strFile);
-        
+
         String strNewFile = strPath.concat(File.separator).concat(strNewSufij).concat(strName);
-        final ZipOutputStream zos = new ZipOutputStream(new FileOutputStream(strNewFile));
+
+        (new File(strPath.concat(File.separator).concat(strNewSufij))).mkdirs();
         
+        final ZipOutputStream zos = new ZipOutputStream(new FileOutputStream(strNewFile));
+
         for (Enumeration e = zipFile.entries(); e.hasMoreElements();) {
             ZipEntry entryIn = new ZipEntry((ZipEntry) e.nextElement());
-            
+
             if (!entryIn.getName().equalsIgnoreCase(strFile2Change)) {
-                zos.putNextEntry(entryIn);
+                //zos.putNextEntry(entryIn);
+                ZipEntry destEntry
+                        = new ZipEntry(entryIn.getName());
+                zos.putNextEntry(destEntry);
+
                 InputStream is = zipFile.getInputStream(entryIn);
                 byte[] buf = new byte[1024];
                 int len;
@@ -90,53 +98,24 @@ public class ZipReader implements ElementHandler {
                     zos.write(buf, 0, len);
                 }
             } else {
-                zos.putNextEntry(new ZipEntry(strFile2Change));
+                //String strData = XMLUtility.newStringFromDocument(doc);
 
-                InputStream is = zipFile.getInputStream(entryIn);
+                ZipEntry destEntry
+                        = new ZipEntry(strFile2Change);
+                zos.putNextEntry(destEntry);
+
+                InputStream is = XMLUtility.newInputStreamFromDocument(doc);
+                //zipFile.getInputStream(entryIn);
                 byte[] buf = new byte[1024];
                 int len;
                 while ((len = (is.read(buf))) > 0) {
-                    String s = new String(buf);
-                    if (s.contains("key1=value1")) {
-                        buf = s.replaceAll("key1=value1", "key1=val2").getBytes();
-                    }
+                    //buf = strData.getBytes();
                     zos.write(buf, 0, (len < buf.length) ? len : buf.length);
                 }//*/
             }
             zos.closeEntry();
         }
         zos.close();
-
-        /*String strZipFile = strPath.concat(File.separator).concat(strName);
-         Path pathZipFile = Paths.get(strZipFile);
-        
-        
-         //Path myFilePath = Paths.get("c:/dump2/mytextfile.txt");
-
-        
-        
-         try (FileSystem fs = FileSystems.newFileSystem(pathZipFile, null)) {
-         Path fileInsideZipPath = fs.getPath(File.separator.concat(strFile2Change));
-         Files.copy(XMLUtility.newInputStreamFromDocument(doc), pathZipFile, new CopyOption() {});
-         //Files.copy(myFilePath, fileInsideZipPath);
-         } catch (IOException e) {
-         // TODO Auto-generated catch block
-         e.printStackTrace();
-         }*/
-    }
-
-    public static void main(String[] argv) {
-        /*Path myFilePath = Paths.get("c:/dump2/mytextfile.txt");
-
-         Path zipFilePath = Paths.get("c:/dump2/myarchive.zip");
-         try (FileSystem fs = FileSystems.newFileSystem(zipFilePath, null)) {
-         Path fileInsideZipPath = fs.getPath("/mytextfile.txt");
-         Files.copy(null, myFilePath, options)
-         //Files.copy(myFilePath, fileInsideZipPath);
-         } catch (IOException e) {
-         // TODO Auto-generated catch block
-         e.printStackTrace();
-         }*/
     }
 
 }
