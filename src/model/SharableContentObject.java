@@ -82,10 +82,12 @@ public class SharableContentObject {
         String strID1 = scoData.getStrID();
         String strResp = "";
 
-        if (!strID1.contains("re")) {
-            strResp = "Objeto".toUpperCase();
-        } else {
+        if (strID1.contains("re")) {
             strResp = "Recurso".toUpperCase();
+        } else if(strID1.contains("ob")) {
+            strResp = "Objeto".toUpperCase();
+        } else if(strID1.contains("le")){
+            strResp = "Leccion".toUpperCase();
         }
 
         System.out.println("Found DATA [" + "Type" + "]: " + strResp);

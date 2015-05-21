@@ -39,6 +39,7 @@ public class MetadataParser {
 
         //Creating SCOs
         SharableContentObject scoObjeto = null;
+        SharableContentObject scoLeccion = null;
 
         for (String strNameFolder : listFilesForFolder) {
             if (strNameFolder.endsWith(".zip")) {
@@ -57,6 +58,23 @@ public class MetadataParser {
                 }
             }
         }
+        
+        for (String strNameFolder : listFilesForFolder) {
+            if (strNameFolder.endsWith(".xml")) {
+                try {
+                    SharableContentObject scoData = new SharableContentObject(new XMLReader(args[0], strNameFolder));
+                    //arrScos.add(new SharableContentObject(new ZipReader(args[0], strNameFolder)));
+                    if (scoData.getStrType().equals("Leccion".toUpperCase())) {
+                        scoLeccion = scoData;
+                        break;
+                    }
+                } catch (IOException | SAXException | ParserConfigurationException ex) {
+                    JOptionPane.showMessageDialog(null, ex);
+                    Logger.getLogger(MetadataParser.class.getName()).log(Level.SEVERE, null, ex);
+                    System.exit(8);
+                }
+            }
+        }
 
         try {
             for (SharableContentObject scoData : arrScos) {
@@ -67,7 +85,15 @@ public class MetadataParser {
             Logger.getLogger(MetadataParser.class.getName()).log(Level.SEVERE, null, ex);
             System.exit(9);
         }
-
+        
+        try {
+            scoObjeto.SetRelation(scoLeccion, "Es parte de");
+        } catch (NullPointerException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+            Logger.getLogger(MetadataParser.class.getName()).log(Level.SEVERE, null, ex);
+            System.exit(9);
+        }
+        
         for (SharableContentObject scoData : arrScos) {
             scoObjeto.SetRelation(scoData, "Está compuesto por");
         }

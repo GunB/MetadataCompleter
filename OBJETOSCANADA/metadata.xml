@@ -1,0 +1,163 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<cem:cem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cem="http://ltsc.ieee.org/xsd/CEM" xsi:type="cem:cem" xsi:schemaLocation="http://ltsc.ieee.org/xsd/LOM lomCustom.xsd">
+  <general>
+    <language>en</language>
+    <identifier>
+      <catalog catName="edistribution" catSource="http://www.edistribution.co/">engenn1le01</catalog>
+    </identifier>
+    <title subtitle="" lang="en">Meeting new people</title>
+    <description lang="en">This lesson: "Meeting new people"  belongs to "n1. "It is composed of twelve learning objects, that have the following learning outcomes: Exchange basic personal information accurately use basic information in simple situations, identify necessary improvement task related to exchange of basic information an daily activities. On the other hand,  the communicative functions of this lesson are: Say letters of the alphabet, say and ask who people are say where you live, ask people where they live, ask someone to hand you something, hand things over, ask for and offer help, Accept and decline offers of help.</description>
+    <keyword lang="en">
+      <li>Meeting new people</li>
+      <li>Present tense of verb to have</li>
+      <li>Wh/Hw Questions</li>
+      <li>Personal information</li>
+	   <li>–s endings (plural, possessive, third person singular)</li>
+    </keyword>
+  </general>
+  <lifeCycle>
+    <version date="30-04-2015">1.0</version>
+    <status>Publicado</status>
+    <contribute>
+      <role schema="CEM">Productor ejecutivo</role>
+      <entity entityForm="24933" type="Persona" src="info@elltechnologies.com" institution="ELL Technologies Ltd." country="CA">Bill Martin</entity>
+      <date>30-04-2015</date>
+    </contribute>
+    <contribute>
+      <role schema="CEM">Productor ejecutivo</role>
+      <entity entityForm="24934" type="Persona" src="info@elltechnologies.com" institution="ELL Technologies Ltd." country="CA">Yueh-Chin Ma</entity>
+      <date>30-04-2015</date>
+    </contribute>
+    <contribute>
+      <role schema="CEM">Productor ejecutivo</role>
+      <entity entityForm="24935" type="Persona" src="info@elltechnologies.com" institution="ELL Technologies Ltd." country="CA">Lial Zlatkin</entity>
+      <date>30-04-2015</date>
+    </contribute>
+    <contribute>
+      <role schema="CEM">Desarrollador web</role>
+      <entity entityForm="24936" type="Persona" src="info@elltechnologies.com" institution="ELL Technologies Ltd." country="CA">Robert Christopher McMahon</entity>
+      <date>30-04-2015</date>
+    </contribute>
+    <contribute>
+      <role schema="CEM">Desarrollador web</role>
+      <entity entityForm="24937" type="Persona" src="info@elltechnologies.com" institution="ELL Technologies Ltd." country="CA">Sean Roy Roadhouse</entity>
+      <date>30-04-2015</date>
+    </contribute>
+    <contribute>
+      <role schema="CEM">Desarrollador web</role>
+      <entity entityForm="24938" type="Persona" src="info@elltechnologies.com" institution="ELL Technologies Ltd." country="CA">Martin Zlatkin</entity>
+      <date>30-04-2015</date>
+    </contribute>
+    <contribute>
+      <role schema="CEM">Desarrollador web</role>
+      <entity entityForm="24939" type="Persona" src="info@elltechnologies.com" institution="ELL Technologies Ltd." country="CA">Kristine Rose Seko Tomlinson</entity>
+      <date>30-04-2015</date>
+    </contribute>
+    <contribute>
+      <role schema="CEM">Desarrollador web</role>
+      <entity entityForm="24940" type="Persona" src="info@elltechnologies.com" institution="ELL Technologies Ltd." country="CA">Truman Kwong</entity>
+      <date>30-04-2015</date>
+    </contribute>
+    <contribute>
+      <role schema="CEM">Productor ejecutivo</role>
+      <entity entityForm="24941" type="Persona" src="info@elltechnologies.com" institution="ELL Technologies Ltd." country="CA">Jayne Edmonds</entity>
+      <date>30-04-2015</date>
+    </contribute>
+    <contribute>
+      <role schema="CEM">Diseñador Instruccional</role>
+      <entity entityForm="24942" type="Persona" src="info@elltechnologies.com" institution="ELL Technologies Ltd." country="CA">Rita Gagliano</entity>
+      <date>30-04-2015</date>
+    </contribute>
+    <contribute>
+      <role schema="CEM">Experto pedagógico</role>
+      <entity entityForm="24943" type="Persona" src="info@elltechnologies.com" institution="ELL Technologies Ltd." country="CA">Giuliano Gullotti</entity>
+      <date>30-04-2015</date>
+    </contribute>
+    <contribute>
+      <role schema="CEM">Experto pedagógico</role>
+      <entity entityForm="24944" type="Persona" src="info@elltechnologies.com" institution="ELL Technologies Ltd." country="CA">Natalie Ryan</entity>
+      <date>30-04-2015</date>
+    </contribute>
+    <contribute>
+      <role schema="CEM">Experto pedagógico</role>
+      <entity entityForm="24945" type="Persona" src="info@elltechnologies.com" institution="ELL Technologies Ltd." country="CA">Chamini Loganathan</entity>
+      <date>30-04-2015</date>
+    </contribute>
+    <contribute>
+      <role schema="CEM">Experto pedagógico</role>
+      <entity entityForm="24946" type="Persona" src="info@elltechnologies.com" institution="ELL Technologies Ltd." country="CA">Anne-Louise Power</entity>
+      <date>30-04-2015</date>
+    </contribute>
+    <contribute>
+      <role schema="CEM">Experto pedagógico</role>
+      <entity entityForm="24947" type="Persona" src="info@elltechnologies.com" institution="ELL Technologies Ltd." country="CA">Carol Vizard</entity>
+      <date>30-04-2015</date>
+    </contribute>
+    <contribute>
+      <role schema="CEM">Experto pedagógico</role>
+      <entity entityForm="24948" type="Persona" src="info@elltechnologies.com" institution="ELL Technologies Ltd." country="CA">Charles Gibbs</entity>
+      <date>30-04-2015</date>
+    </contribute>
+    <contribute>
+      <role schema="CEM">Experto pedagógico</role>
+      <entity entityForm="24949" type="Persona" src="info@elltechnologies.com" institution="ELL Technologies Ltd." country="CA">Shamina Vastani</entity>
+      <date>30-04-2015</date>
+    </contribute>
+    <contribute>
+      <role schema="CEM">Experto pedagógico</role>
+      <entity entityForm="24950" type="Persona" src="info@elltechnologies.com" institution="ELL Technologies Ltd." country="CA">Sumi Akhter</entity>
+      <date>30-04-2015</date>
+    </contribute>
+    <contribute>
+      <role schema="CEM">Experto pedagógico</role>
+      <entity entityForm="24951" type="Persona" src="info@elltechnologies.com" institution="ELL Technologies Ltd." country="CA">Rehan Pochkhanawala</entity>
+      <date>30-04-2015</date>
+    </contribute>
+    <contribute>
+      <role schema="CEM">Diseñador gráfico</role>
+      <entity entityForm="24952" type="Persona" src="info@elltechnologies.com" institution="ELL Technologies Ltd." country="CA">Ricardo Jorge da Rocha Silva Pereira</entity>
+      <date>30-04-2015</date>
+    </contribute>
+    <contribute>
+      <role schema="CEM">Diseñador gráfico</role>
+      <entity entityForm="24953" type="Persona" src="info@elltechnologies.com" institution="ELL Technologies Ltd." country="CA">Maria Alexandrovna Romanova</entity>
+      <date>30-04-2015</date>
+    </contribute>
+    <contribute>
+      <role schema="CEM">Diseñador gráfico</role>
+      <entity entityForm="24954" type="Persona" src="info@elltechnologies.com" institution="ELL Technologies Ltd." country="CA">Siusan Moffat</entity>
+      <date>30-04-2015</date>
+    </contribute>
+    <contribute>
+      <role schema="CEM">Diseñador gráfico</role>
+      <entity entityForm="24955" type="Persona" src="info@elltechnologies.com" institution="ELL Technologies Ltd." country="CA">Jeff Wasson</entity>
+      <date>30-04-2015</date>
+    </contribute>
+    <contribute>
+      <role schema="CEM">Desarrollador web</role>
+      <entity entityForm="24956" type="Persona" src="info@elltechnologies.com" institution="ELL Technologies Ltd." country="CA">Derek Li</entity>
+      <date>30-04-2015</date>
+    </contribute>
+    <contribute>
+      <role schema="CEM">Desarrollador web</role>
+      <entity entityForm="24957" type="Persona" src="info@elltechnologies.com" institution="ELL Technologies Ltd." country="CA">Seema Singh</entity>
+      <date>30-04-2015</date>
+    </contribute>
+    <contribute>
+      <role schema="CEM">Desarrollador web</role>
+      <entity entityForm="24958" type="Persona" src="info@elltechnologies.com" institution="ELL Technologies Ltd." country="CA">Santosh Adupa</entity>
+      <date>30-04-2015</date>
+    </contribute>
+  </lifeCycle>
+  <educational>
+    <description>
+      <recommendedUse lang="en">A lesson is composed of 12 Learning Objects (  LO ) that present interrelated topics based on communicative functions and that develop grammar aspects, vocabulary, pronunciation, common work English, and Cultural aspects. Moreover, a learning object ( LO ) is composed of 7 digital resources intended to work on communicative functions and  that develop grammar aspects, vocabulary, pronunciation, common work English, and Cultural aspects. In this way, every lesson has several learning outcomes that refer to  SENA equivalent Learning Outcomes.
+Likewise, the communicative function of an utterance corresponds to the speaker's intention in producing a given message. These functions are stated by SENA in the knowledge of processes of the Curricular Framework. Also, the grammar refers to the study of parts of speech, their inflections, and their functions and relations in the sentence.  It is developed through all the LOs in the lessons for each level. In the same way, the vocabulary refers to the words that make up a language and is developed through all the LOs in the lessons for each level. Finally, the pronunciation refers to  the particular way of articulating  a word or set of words and is developed through all the LOs in the lessons for each level. 
+On the other hand, there are related assessment criteria and Common work English established for this level in the Curriculum Framework for English in SENA. Besides this, the cultural aspects describe beliefs, economic, family and community life, government, sports, foods, art, and other parts of a culture. In the same way, the "lesson assessment" refers to an assessment of the learning aspects studied throughout the lesson, and it is always found in the LO12 while 
+the "level assessment" refers to an assessment of the learning aspects studied throughout all the lessons of a level.  It is found at the end of the last lesson of each level. </recommendedUse>
+      <triggerQuestion lang="en"> A lesson  has twelve different  trigger questions.</triggerQuestion>
+      <pedagogicalAspect lang="en">The information about communicative functions:Say letters of the alphabet, say and ask who people are, say where you live, ask people where they live, ask someone to hand you something, hand things over, ask for and offer help, accept and decline offers of help. Grammar: Present tense of verb to have, Wh/Hw Questions, definite articles, plural nouns. Vocabulary: Personal information, family members, countries, nationalities, languages, countable and uncountable nouns, actions, eating and mealtimes. Cultural aspects: simple Polite Requests </pedagogicalAspect>
+      <learningGoal lang="en">The purposes of this lesson are  to: Exchange basic personal information about personal addresses, telephone numbers, age, nationality and occupation with a highly supportive interlocutor, identify necessary improvement tasks related to exchange of basic personal information and daily activities, talk about personal daily or weekly routine in a very simple way, with the help of a highly supportive interlocutor.</learningGoal>
+    </description>
+  </educational>
+</cem:cem>
