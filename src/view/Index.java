@@ -34,13 +34,6 @@ public class Index extends javax.swing.JFrame {
         AccionesVentana.LooknFeel();
         initComponents();
         nuevo = new AccionesVentana(this, "XML Data Generator");
-        txtFolderProyect.setText(strRoot + File.separator + "OBJETOSCANADA");
-        try {
-            chooser = new JFolderChooser(txtFolderProyect.getText());
-            SearchingFolder();
-        } catch (Exception ex) {
-            //Logger.getLogger(Index.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }
 
     /**
