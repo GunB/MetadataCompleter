@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.TableModel;
 import utiility.AccionesVentana;
 import utiility.JFolderChooser;
@@ -55,9 +56,10 @@ public class Index extends javax.swing.JFrame {
         btnSearch = new javax.swing.JButton();
         txtFolderProyect = new javax.swing.JTextField();
         btnRead = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        pnlData = new javax.swing.JScrollPane();
         tblData = new javax.swing.JTable();
         btnFix = new javax.swing.JButton();
+        lblMessage = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -95,7 +97,7 @@ public class Index extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(btnSearch)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtFolderProyect, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+                .addComponent(txtFolderProyect)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnRead)
                 .addContainerGap())
@@ -149,17 +151,21 @@ public class Index extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(tblData);
+        pnlData.setViewportView(tblData);
         if (tblData.getColumnModel().getColumnCount() > 0) {
             tblData.getColumnModel().getColumn(0).setResizable(false);
         }
 
         btnFix.setText("Fix!");
+        btnFix.setEnabled(false);
         btnFix.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnFixActionPerformed(evt);
             }
         });
+
+        lblMessage.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        lblMessage.setForeground(new java.awt.Color(255, 0, 0));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -169,10 +175,14 @@ public class Index extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(pnlFolder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnFix)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(lblMessage)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnFix))
+                            .addComponent(pnlData, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 418, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -181,9 +191,11 @@ public class Index extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(pnlFolder, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
+                .addComponent(pnlData, javax.swing.GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnFix)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnFix)
+                    .addComponent(lblMessage))
                 .addContainerGap())
         );
 
@@ -231,12 +243,16 @@ public class Index extends javax.swing.JFrame {
         pnlFolder.setEnabled(false);
         btnRead.setEnabled(false);
         btnSearch.setEnabled(false);
+        
+        btnFix.setEnabled(true);
 
     }//GEN-LAST:event_btnReadActionPerformed
 
     private void btnFixActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFixActionPerformed
         String[] arrData = {txtFolderProyect.getText()};
+        lblMessage.setText("Trabajando...");
         MetadataParser.main(arrData);
+        
     }//GEN-LAST:event_btnFixActionPerformed
 
     /**
@@ -278,7 +294,8 @@ public class Index extends javax.swing.JFrame {
     private javax.swing.JButton btnFix;
     private javax.swing.JButton btnRead;
     private javax.swing.JButton btnSearch;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblMessage;
+    private javax.swing.JScrollPane pnlData;
     private javax.swing.JPanel pnlFolder;
     private javax.swing.JTable tblData;
     private javax.swing.JTextField txtFolderProyect;
