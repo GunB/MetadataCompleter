@@ -61,7 +61,7 @@ public class MetadataParser {
                                     arrScos.add(scoData);
                                     break;
                             }
-                        } catch (IOException | SAXException | ParserConfigurationException ex) {
+                        } catch (IOException | SAXException | ParserConfigurationException | NullPointerException ex) {
                             JOptionPane.showMessageDialog(null, ex);
                             Logger.getLogger(MetadataParser.class.getName()).log(Level.SEVERE, null, ex);
                             System.exit(8);
@@ -83,7 +83,7 @@ public class MetadataParser {
                             arrScos.add(scoData);
                             break;
                     }
-                } catch (IOException | SAXException | ParserConfigurationException ex) {
+                } catch (IOException | SAXException | ParserConfigurationException | NullPointerException ex) {
                     JOptionPane.showMessageDialog(null, ex);
                     Logger.getLogger(MetadataParser.class.getName()).log(Level.SEVERE, null, ex);
                     System.exit(8);

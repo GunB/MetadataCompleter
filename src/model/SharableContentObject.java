@@ -78,7 +78,7 @@ public class SharableContentObject {
         return docXML;
     }
 
-    public static String GetType(SharableContentObject scoData) {
+    public static String GetType(SharableContentObject scoData) throws NullPointerException{
         String strID1 = scoData.getStrID();
         String strResp = "";
 
