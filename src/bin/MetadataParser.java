@@ -69,27 +69,24 @@ public class MetadataParser {
                     }
                 }
 
-                for (String strNameFolder : listFilesForFolder) {
-                    if (strNameFolder.endsWith(".xml")) {
-                        try {
-                            SharableContentObject scoData = new SharableContentObject(new XMLReader(args[0], strNameFolder));
-                            switch (scoData.getStrType()) {
-                                case "LECCION":
-                                    scoLeccion = scoData;
-                                    break;
-                                case "OBJETO":
-                                    scoObjeto = scoData;
-                                    break;
-                                case "RECURSO":
-                                    arrScos.add(scoData);
-                                    break;
-                            }
-                        } catch (IOException | SAXException | ParserConfigurationException ex) {
-                            JOptionPane.showMessageDialog(null, ex);
-                            Logger.getLogger(MetadataParser.class.getName()).log(Level.SEVERE, null, ex);
-                            System.exit(8);
-                        }
+                try {
+                    SharableContentObject scoData;
+                    scoData = new SharableContentObject(new XMLReader(args[1], ""));
+                    switch (scoData.getStrType()) {
+                        case "LECCION":
+                            scoLeccion = scoData;
+                            break;
+                        case "OBJETO":
+                            scoObjeto = scoData;
+                            break;
+                        case "RECURSO":
+                            arrScos.add(scoData);
+                            break;
                     }
+                } catch (IOException | SAXException | ParserConfigurationException ex) {
+                    JOptionPane.showMessageDialog(null, ex);
+                    Logger.getLogger(MetadataParser.class.getName()).log(Level.SEVERE, null, ex);
+                    System.exit(8);
                 }
 
                 try {
@@ -102,14 +99,14 @@ public class MetadataParser {
                     System.exit(9);
                 }
 
-                /*try {
+                try {
                     scoObjeto.SetRelation(scoLeccion, "Es parte de");
                 } catch (NullPointerException ex) {
                     JOptionPane.showMessageDialog(null, ex);
                     Logger.getLogger(MetadataParser.class.getName()).log(Level.SEVERE, null, ex);
                     System.exit(9);
-                }*/
-
+                }
+                
                 for (SharableContentObject scoData : arrScos) {
                     scoObjeto.SetRelation(scoData, "Está compuesto por");
                 }
@@ -128,7 +125,7 @@ public class MetadataParser {
                     Logger.getLogger(MetadataParser.class.getName()).log(Level.SEVERE, null, ex);
                 }
 
-                JOptionPane.showMessageDialog(null, "Terminado exitosamente","Mensaje",JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Terminado exitosamente", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
                 System.exit(0);
 
             }

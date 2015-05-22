@@ -11,7 +11,9 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.TableModel;
 import utiility.AccionesVentana;
 import utiility.JFolderChooser;
@@ -53,6 +55,9 @@ public class Index extends javax.swing.JFrame {
         tblData = new javax.swing.JTable();
         btnFix = new javax.swing.JButton();
         lblMessage = new javax.swing.JLabel();
+        pnlFolder1 = new javax.swing.JPanel();
+        btnSearchXML = new javax.swing.JButton();
+        txtXMLFile = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -160,44 +165,85 @@ public class Index extends javax.swing.JFrame {
         lblMessage.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         lblMessage.setForeground(new java.awt.Color(255, 0, 0));
 
+        pnlFolder1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 204, 0)), "XML Data Lesson"));
+
+        btnSearchXML.setText("Search");
+        btnSearchXML.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchXMLActionPerformed(evt);
+            }
+        });
+
+        txtXMLFile.setEditable(false);
+        txtXMLFile.setBackground(new java.awt.Color(255, 255, 255));
+        txtXMLFile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtXMLFileActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout pnlFolder1Layout = new javax.swing.GroupLayout(pnlFolder1);
+        pnlFolder1.setLayout(pnlFolder1Layout);
+        pnlFolder1Layout.setHorizontalGroup(
+            pnlFolder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlFolder1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnSearchXML)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtXMLFile)
+                .addContainerGap())
+        );
+        pnlFolder1Layout.setVerticalGroup(
+            pnlFolder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlFolder1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlFolder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSearchXML)
+                    .addComponent(txtXMLFile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(14, 14, 14)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(pnlFolder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(pnlFolder1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(4, 4, 4)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(lblMessage)
+                                .addComponent(lblMessage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(btnFix))
-                            .addComponent(pnlData, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 418, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(pnlData, javax.swing.GroupLayout.DEFAULT_SIZE, 474, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(pnlFolder1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(pnlFolder, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pnlData, javax.swing.GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnFix)
-                    .addComponent(lblMessage))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(pnlData, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnFix, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblMessage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void SearchingFolder(){
+    private void SearchingFolder() {
         try {
-            
+
             txtFolderProyect.setText(chooser.getStrPath());
             btnRead.setEnabled(true);
         } catch (Exception ex) {
@@ -205,7 +251,7 @@ public class Index extends javax.swing.JFrame {
             Logger.getLogger(Index.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
         chooser = new JFolderChooser();
         chooser.OpenChooser("");
@@ -227,26 +273,43 @@ public class Index extends javax.swing.JFrame {
 
         while (ite.hasNext()) {
             String ele = ite.next();
-            
+
             model.setValueAt(ele, cont, 0);
-            
+
             cont++;
         }
-        
+
         pnlFolder.setEnabled(false);
         btnRead.setEnabled(false);
         btnSearch.setEnabled(false);
-        
+
         btnFix.setEnabled(true);
 
     }//GEN-LAST:event_btnReadActionPerformed
 
     private void btnFixActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFixActionPerformed
-        String[] arrData = {txtFolderProyect.getText()};
+        btnSearchXML.setEnabled(false);
+        String[] arrData = {txtFolderProyect.getText(), txtXMLFile.getText()};
         lblMessage.setText("Trabajando...");
         MetadataParser.main(arrData);
-        
+
     }//GEN-LAST:event_btnFixActionPerformed
+
+    private void btnSearchXMLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchXMLActionPerformed
+        JFileChooser jchus = new JFileChooser();
+        jchus.setCurrentDirectory(new java.io.File("."));
+        jchus.setFileFilter(new FileNameExtensionFilter("metadata.xml", "xml"));
+        jchus.showDialog(this, null);
+        try {
+            txtXMLFile.setText(jchus.getSelectedFile().getAbsolutePath());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_btnSearchXMLActionPerformed
+
+    private void txtXMLFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtXMLFileActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtXMLFileActionPerformed
 
     /**
      * @param args the command line arguments
@@ -287,10 +350,13 @@ public class Index extends javax.swing.JFrame {
     private javax.swing.JButton btnFix;
     private javax.swing.JButton btnRead;
     private javax.swing.JButton btnSearch;
+    private javax.swing.JButton btnSearchXML;
     private javax.swing.JLabel lblMessage;
     private javax.swing.JScrollPane pnlData;
     private javax.swing.JPanel pnlFolder;
+    private javax.swing.JPanel pnlFolder1;
     private javax.swing.JTable tblData;
     private javax.swing.JTextField txtFolderProyect;
+    private javax.swing.JTextField txtXMLFile;
     // End of variables declaration//GEN-END:variables
 }

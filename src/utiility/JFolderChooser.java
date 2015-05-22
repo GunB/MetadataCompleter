@@ -26,6 +26,11 @@ public class JFolderChooser {
         chooser.setSelectedFile(new File(strPath));
         
     }
+    
+    public String getStrPathUp() throws Exception {
+        this.strPath = chooser.getSelectedFile().getAbsolutePath();
+        return strPath;
+    }
 
     public String getStrPath() throws Exception {
         this.strPath = chooser.getSelectedFile().getAbsolutePath();
