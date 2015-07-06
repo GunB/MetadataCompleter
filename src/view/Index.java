@@ -6,13 +6,11 @@
 package view;
 
 import bin.MetadataParser;
-import java.io.File;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
-import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.TableModel;
 import utiility.AccionesVentana;
