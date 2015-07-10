@@ -16,7 +16,6 @@ import javax.xml.transform.TransformerException;
 import model.SharableContentObject;
 import org.xml.sax.SAXException;
 import utiility.JFolderChooser;
-import view.Index;
 
 /**
  *
@@ -38,99 +37,179 @@ public class MetadataParser {
                     System.out.println("\t" + arg);
                 }
 
-                ArrayList<String> listFilesForFolder = JFolderChooser.listFilesForFolder(new File(args[0]));
+                ArrayList<String> listFilesForFolder = JFolderChooser.listFilesForFolder(new File(args[0]), true);
 
-                ArrayList<SharableContentObject> arrScos = new ArrayList<>();
+                ArrayList<SharableContentObject> arrScoRecurso = new ArrayList<>();
+                ArrayList<SharableContentObject> arrScoObjeto = new ArrayList<>();
+                ArrayList<SharableContentObject> arrScoLeccion = new ArrayList<>();
+                ArrayList<SharableContentObject> arrScoNivel = new ArrayList<>();
 
                 //Creating SCOs
-                SharableContentObject scoObjeto = null;
-                SharableContentObject scoLeccion = null;
-
                 for (String strNameFolder : listFilesForFolder) {
                     if (strNameFolder.endsWith(".zip")) {
                         try {
                             SharableContentObject scoData = new SharableContentObject(new ZipReader(args[0], strNameFolder));
+                            //<editor-fold defaultstate="collapsed" desc="Clasificando">
                             switch (scoData.getStrType()) {
+                                case "NIVEL":
+                                    arrScoNivel.add(scoData);
+                                    break;
                                 case "LECCION":
-                                    scoLeccion = scoData;
+                                    arrScoLeccion.add(scoData);
                                     break;
                                 case "OBJETO":
-                                    scoObjeto = scoData;
+                                    arrScoObjeto.add(scoData);
                                     break;
                                 case "RECURSO":
-                                    arrScos.add(scoData);
+                                    arrScoRecurso.add(scoData);
                                     break;
                             }
+                            //</editor-fold>
                         } catch (IOException | SAXException | ParserConfigurationException | NullPointerException ex) {
-                            JOptionPane.showMessageDialog(null, ex);
                             Logger.getLogger(MetadataParser.class.getName()).log(Level.SEVERE, null, ex);
+                            JOptionPane.showMessageDialog(null, ex);
+                            System.exit(8);
+                        }
+                    }
+                    if (strNameFolder.endsWith(".xml")) {
+                        try {
+                            SharableContentObject scoData = new SharableContentObject(new XMLReader(args[0], strNameFolder));
+                            //<editor-fold defaultstate="collapsed" desc="Clasificando">
+                            switch (scoData.getStrType()) {
+                                case "NIVEL":
+                                    arrScoNivel.add(scoData);
+                                    break;
+                                case "LECCION":
+                                    arrScoLeccion.add(scoData);
+                                    break;
+                                case "OBJETO":
+                                    arrScoObjeto.add(scoData);
+                                    break;
+                                case "RECURSO":
+                                    arrScoRecurso.add(scoData);
+                                    break;
+                            }
+                            //</editor-fold>
+                        } catch (IOException | SAXException | ParserConfigurationException | NullPointerException ex) {
+                            Logger.getLogger(MetadataParser.class.getName()).log(Level.SEVERE, null, ex);
+                            JOptionPane.showMessageDialog(null, ex);
                             System.exit(8);
                         }
                     }
                 }
 
-                try {
-                    SharableContentObject scoData;
-                    scoData = new SharableContentObject(new XMLReader(args[1], ""));
-                    switch (scoData.getStrType()) {
-                        case "LECCION":
-                            scoLeccion = scoData;
-                            break;
-                        case "OBJETO":
-                            scoObjeto = scoData;
-                            break;
-                        case "RECURSO":
-                            arrScos.add(scoData);
-                            break;
-                    }
-                } catch (IOException | SAXException | ParserConfigurationException | NullPointerException ex) {
-                    JOptionPane.showMessageDialog(null, ex);
-                    Logger.getLogger(MetadataParser.class.getName()).log(Level.SEVERE, null, ex);
-                    System.exit(8);
-                }
+                Boolean bulHijos, bulPadre;
 
                 try {
-                    for (SharableContentObject scoData : arrScos) {
-                        scoData.SetRelation(scoObjeto, "Es parte de");
+                    for (SharableContentObject scoActual : arrScoRecurso) {
+                        bulPadre = setRelationsPadreActual(scoActual, arrScoObjeto);
+
+                        if (bulPadre) {
+                            try {
+                                scoActual.SaveChanges();
+                            } catch (IOException | TransformerException ex) {
+                                Logger.getLogger(MetadataParser.class.getName()).log(Level.SEVERE, null, ex);
+                                JOptionPane.showMessageDialog(null, ex);
+                                System.exit(6);
+                            }
+                        }
                     }
                 } catch (NullPointerException ex) {
-                    JOptionPane.showMessageDialog(null, ex);
                     Logger.getLogger(MetadataParser.class.getName()).log(Level.SEVERE, null, ex);
+                    JOptionPane.showMessageDialog(null, ex);
                     System.exit(9);
                 }
 
                 try {
-                    scoObjeto.SetRelation(scoLeccion, "Es parte de");
+                    for (SharableContentObject scoActual : arrScoObjeto) {
+                        bulPadre = setRelationsPadreActual(scoActual, arrScoLeccion);
+                        bulHijos = bulPadre ? setRelationsHijoActual(scoActual, arrScoRecurso) : false;
+
+                        if (bulPadre && bulHijos) {
+                            try {
+                                scoActual.SaveChanges();
+                            } catch (IOException | TransformerException ex) {
+                                Logger.getLogger(MetadataParser.class.getName()).log(Level.SEVERE, null, ex);
+                                JOptionPane.showMessageDialog(null, ex);
+                                System.exit(6);
+                            }
+                        }
+                    }
                 } catch (NullPointerException ex) {
-                    JOptionPane.showMessageDialog(null, ex);
                     Logger.getLogger(MetadataParser.class.getName()).log(Level.SEVERE, null, ex);
+                    JOptionPane.showMessageDialog(null, ex);
+                    System.exit(9);
+                }
+
+                try {
+                    for (SharableContentObject scoActual : arrScoLeccion) {
+                        bulPadre = setRelationsPadreActual(scoActual, arrScoNivel);
+                        bulHijos = bulPadre ? setRelationsHijoActual(scoActual, arrScoObjeto) : false;
+
+                        if (bulPadre && bulHijos) {
+                            try {
+                                scoActual.SaveChanges();
+                            } catch (IOException | TransformerException ex) {
+                                Logger.getLogger(MetadataParser.class.getName()).log(Level.SEVERE, null, ex);
+                                JOptionPane.showMessageDialog(null, ex);
+                                System.exit(6);
+                            }
+                        }
+                    }
+                } catch (NullPointerException ex) {
+                    Logger.getLogger(MetadataParser.class.getName()).log(Level.SEVERE, null, ex);
+                    JOptionPane.showMessageDialog(null, ex);
+                    System.exit(9);
+                }
+
+                try {
+                    for (SharableContentObject scoActual : arrScoNivel) {
+                        bulHijos = setRelationsHijoActual(scoActual, arrScoLeccion);
+
+                        if (bulHijos) {
+                            try {
+                                scoActual.SaveChanges();
+                            } catch (IOException | TransformerException ex) {
+                                Logger.getLogger(MetadataParser.class.getName()).log(Level.SEVERE, null, ex);
+                                JOptionPane.showMessageDialog(null, ex);
+                                System.exit(6);
+                            }
+                        }
+                    }
+                } catch (NullPointerException ex) {
+                    Logger.getLogger(MetadataParser.class.getName()).log(Level.SEVERE, null, ex);
+                    JOptionPane.showMessageDialog(null, ex);
                     System.exit(9);
                 }
                 
-                for (SharableContentObject scoData : arrScos) {
-                    scoObjeto.SetRelation(scoData, "Está compuesto por");
-                }
-
-                for (SharableContentObject scoData : arrScos) {
-                    try {
-                        scoData.SaveChanges();
-                    } catch (IOException | TransformerException ex) {
-                        Logger.getLogger(MetadataParser.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                }
-
-                try {
-                    scoObjeto.SaveChanges();
-                } catch (IOException | TransformerException ex) {
-                    Logger.getLogger(MetadataParser.class.getName()).log(Level.SEVERE, null, ex);
-                }
-
                 JOptionPane.showMessageDialog(null, "Terminado exitosamente", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
                 System.exit(0);
-
             }
         });
 
+    }
+
+    private static Boolean setRelationsPadreActual(SharableContentObject scoActual, ArrayList<SharableContentObject> arrScoPosiblesPadres) {
+        Boolean bulRelacion = false;
+        for (SharableContentObject scoPadre : arrScoPosiblesPadres) {
+            if (scoActual.getStrID().contains(scoPadre.getStrID())) {
+                scoActual.SetRelation(scoPadre, "Es parte de");
+                bulRelacion = true;
+                break;
+            }
+        }
+        return bulRelacion;
+    }
+
+    private static Boolean setRelationsHijoActual(SharableContentObject scoActual, ArrayList<SharableContentObject> arrScoPosiblesHijos) {
+        Boolean bulRelacion = false;
+        for (SharableContentObject scoHijo : arrScoPosiblesHijos) {
+            if (scoHijo.getStrID().contains(scoActual.getStrID())) {
+                scoActual.SetRelation(scoHijo, "Está compuesto por");
+                bulRelacion = true;
+            }
+        }
+        return bulRelacion;
     }
 
 }

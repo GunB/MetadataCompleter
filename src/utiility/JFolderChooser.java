@@ -56,20 +56,22 @@ public class JFolderChooser {
         }
     }
 
-    public ArrayList<String> getFileList() {
+    public ArrayList<String> getFileList(boolean isDeepSearch) {
         if (strPath.isEmpty()) {
             return null;
         } else {
-            return listFilesForFolder(new File(strPath));
+            return listFilesForFolder(new File(strPath), isDeepSearch);
         }
     }
 
-    public static ArrayList<String> listFilesForFolder(File folder) {
+    public static ArrayList<String> listFilesForFolder(File folder, boolean isDeepSearch) {
         ArrayList<String> arrData = new ArrayList<>();
 
         for (final File fileEntry : folder.listFiles()) {
             if (fileEntry.isDirectory()) {
-                //listFilesForFolder(fileEntry);
+                if(isDeepSearch){
+                    listFilesForFolder(fileEntry, isDeepSearch);
+                }
             } else {
                 arrData.add(fileEntry.getName());
                 //System.out.println(fileEntry.getName());

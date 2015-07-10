@@ -42,6 +42,15 @@ import org.xml.sax.SAXException;
  */
 public class XMLUtility {
 
+    /**
+     *
+     * @param listNode 
+     * @param arrStrCompare new ArrayList<>(Arrays.asList("general", "identifier", "catalog"))
+     * @param arrNewData
+     * @param xmlTag
+     * @return 
+     * @throws ParserConfigurationException
+     */
     public static NodeList AddNodeList2Node(NodeList listNode, ArrayList<String> arrStrCompare, String[] arrNewData, XMLTag xmlTag) throws ParserConfigurationException {
 
         DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
@@ -89,6 +98,13 @@ public class XMLUtility {
         return listNode;
     }
 
+    /**
+     *
+     * @param listNode
+     * @param arrStrCompare
+     * @param strNewValue
+     * @return
+     */
     public static NodeList ChangeNode(NodeList listNode, ArrayList<String> arrStrCompare, String strNewValue) {
 
         ArrayList<String> arrTempList = arrStrCompare;
@@ -119,7 +135,13 @@ public class XMLUtility {
 
         return listNode;
     }
-
+    
+    /**
+     *
+     * @param listNode
+     * @param arrStrCompare
+     * @return
+     */
     public static String ReadNode(NodeList listNode, ArrayList<String> arrStrCompare) {
 
         ArrayList<String> arrTempList = arrStrCompare;
@@ -150,6 +172,13 @@ public class XMLUtility {
         return null;
     }
 
+    /**
+     *
+     * @param doc
+     * @param out
+     * @throws IOException
+     * @throws TransformerException
+     */
     public static void printDocument(Document doc, OutputStream out) throws IOException, TransformerException {
         TransformerFactory tf = TransformerFactory.newInstance();
         Transformer transformer = tf.newTransformer();
@@ -184,6 +213,13 @@ public class XMLUtility {
         return ret;
     }
 
+    /**
+     *
+     * @param doc
+     * @return
+     * @throws TransformerConfigurationException
+     * @throws TransformerException
+     */
     public static InputStream newInputStreamFromDocument(Document doc) throws TransformerConfigurationException, TransformerException {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         Source xmlSource = new DOMSource(doc);
@@ -192,6 +228,13 @@ public class XMLUtility {
         return new ByteArrayInputStream(outputStream.toByteArray());
     }
 
+    /**
+     *
+     * @param doc
+     * @return
+     * @throws TransformerConfigurationException
+     * @throws TransformerException
+     */
     public static String newStringFromDocument(Document doc) throws TransformerConfigurationException, TransformerException {
         TransformerFactory tf = TransformerFactory.newInstance();
         Transformer transformer = tf.newTransformer();

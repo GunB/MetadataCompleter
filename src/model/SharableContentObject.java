@@ -40,6 +40,17 @@ public class SharableContentObject {
     HashMap<String, String> arrData;
 
     ElementHandler eleData;
+    
+    String strNode
+         = "<relation>\n"
+         + "        <kind schema=\"\"/>\n"
+         + "        <resource>\n"
+         + "            <identifier>\n"
+         + "                <catalog catName=\"\" catSource=\"\"/>\n"
+         + "            </identifier>\n"
+         + "            <description lang=\"\"/>\n"
+         + "        </resource>\n"
+         + "</relation>";
 
     //<editor-fold defaultstate="collapsed" desc="Getters and Setters">
     public String getStrType() {
@@ -78,17 +89,17 @@ public class SharableContentObject {
         return docXML;
     }
 
-    public static String GetType(SharableContentObject scoData) throws NullPointerException{
+    public static String GetType(SharableContentObject scoData) throws NullPointerException {
         String strID1 = scoData.getStrID();
         String strResp = "";
 
         if (strID1.contains("re")) {
             strResp = "Recurso".toUpperCase();
-        } else if(strID1.contains("ob")) {
+        } else if (strID1.contains("ob")) {
             strResp = "Objeto".toUpperCase();
-        } else if(strID1.contains("le")){
+        } else if (strID1.contains("le")) {
             strResp = "Leccion".toUpperCase();
-        }
+        } else
 
         System.out.println("Found DATA [" + "Type" + "]: " + strResp);
 
@@ -96,7 +107,6 @@ public class SharableContentObject {
     }
 
 //</editor-fold>
-    
     public SharableContentObject(ElementHandler eleData) throws IOException, SAXException, ParserConfigurationException {
         this.eleData = eleData;
 
@@ -105,17 +115,6 @@ public class SharableContentObject {
         //read this - http://stackoverflow.com/questions/13786607/normalization-in-dom-parsing-with-java-how-does-it-work
         docXML.getDocumentElement().normalize();
         System.out.println("Root element :" + docXML.getDocumentElement().getNodeName());
-
-        String strNode
-                = "<relation>\n"
-                + "        <kind schema=\"\"/>\n"
-                + "        <resource>\n"
-                + "            <identifier>\n"
-                + "                <catalog catName=\"\" catSource=\"\"/>\n"
-                + "            </identifier>\n"
-                + "            <description lang=\"\"/>\n"
-                + "        </resource>\n"
-                + "</relation>";
 
         ndRelation = DocumentBuilderFactory
                 .newInstance()
@@ -137,8 +136,8 @@ public class SharableContentObject {
         this.strType = GetType(this);
 
     }
-    
-    public void SetRelation(SharableContentObject scoObjeto, String strKind){
+
+    public void SetRelation(SharableContentObject scoObjeto, String strKind) {
         Node ndData = ndRelation.cloneNode(true);
         NodeList ndListTemp = ndData.getChildNodes();
         ndListTemp = ChangeNode(ndListTemp, new ArrayList<>(Arrays.asList("kind")), strKind);
@@ -148,8 +147,8 @@ public class SharableContentObject {
         docXML.adoptNode(ndData);
         docXML.getDocumentElement().appendChild(ndData);
     }
-    
-    public void SaveChanges() throws IOException, TransformerException{
+
+    public void SaveChanges() throws IOException, TransformerException {
         eleData.WriteFinish(docXML);
     }
 

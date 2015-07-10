@@ -49,16 +49,18 @@ public class Index extends javax.swing.JFrame {
         btnSearch = new javax.swing.JButton();
         txtFolderProyect = new javax.swing.JTextField();
         btnRead = new javax.swing.JButton();
-        pnlData = new javax.swing.JScrollPane();
-        tblData = new javax.swing.JTable();
         btnFix = new javax.swing.JButton();
         lblMessage = new javax.swing.JLabel();
-        pnlFolder1 = new javax.swing.JPanel();
-        btnSearchXML = new javax.swing.JButton();
-        txtXMLFile = new javax.swing.JTextField();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        pnlData = new javax.swing.JScrollPane();
+        tblData = new javax.swing.JTable();
+        jPanel1 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
+        jPanel2 = new javax.swing.JPanel();
+        chkCopyAll = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setResizable(false);
 
         pnlFolder.setBorder(javax.swing.BorderFactory.createTitledBorder("Object Folder"));
 
@@ -109,8 +111,103 @@ public class Index extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        btnFix.setText("Fix!");
+        btnFix.setEnabled(false);
+        btnFix.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFixActionPerformed(evt);
+            }
+        });
+
+        lblMessage.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        lblMessage.setForeground(new java.awt.Color(255, 0, 0));
+
         tblData.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
                 {null},
                 {null},
                 {null},
@@ -152,83 +249,77 @@ public class Index extends javax.swing.JFrame {
             tblData.getColumnModel().getColumn(0).setResizable(false);
         }
 
-        btnFix.setText("Fix!");
-        btnFix.setEnabled(false);
-        btnFix.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnFixActionPerformed(evt);
-            }
-        });
+        jTabbedPane1.addTab("File List", pnlData);
 
-        lblMessage.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        lblMessage.setForeground(new java.awt.Color(255, 0, 0));
+        jTextArea1.setBackground(new java.awt.Color(0, 153, 153));
+        jTextArea1.setColumns(20);
+        jTextArea1.setForeground(new java.awt.Color(0, 255, 51));
+        jTextArea1.setRows(5);
+        jScrollPane1.setViewportView(jTextArea1);
 
-        pnlFolder1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 204, 0)), "XML Data Lesson"));
-
-        btnSearchXML.setText("Search");
-        btnSearchXML.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSearchXMLActionPerformed(evt);
-            }
-        });
-
-        txtXMLFile.setEditable(false);
-        txtXMLFile.setBackground(new java.awt.Color(255, 255, 255));
-        txtXMLFile.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtXMLFileActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout pnlFolder1Layout = new javax.swing.GroupLayout(pnlFolder1);
-        pnlFolder1.setLayout(pnlFolder1Layout);
-        pnlFolder1Layout.setHorizontalGroup(
-            pnlFolder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlFolder1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnSearchXML)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtXMLFile)
-                .addContainerGap())
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 477, Short.MAX_VALUE)
         );
-        pnlFolder1Layout.setVerticalGroup(
-            pnlFolder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlFolder1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pnlFolder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnSearchXML)
-                    .addComponent(txtXMLFile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE)
         );
+
+        jTabbedPane1.addTab("Console", jPanel1);
+
+        chkCopyAll.setSelected(true);
+        chkCopyAll.setText("Copy data to \"eFixer\" Folder");
+        chkCopyAll.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chkCopyAllActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(chkCopyAll)
+                .addContainerGap(308, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(chkCopyAll)
+                .addContainerGap(159, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Options", jPanel2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(14, 14, 14)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pnlFolder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pnlFolder1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(4, 4, 4)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(lblMessage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnFix))
-                            .addComponent(pnlData, javax.swing.GroupLayout.DEFAULT_SIZE, 474, Short.MAX_VALUE))))
+                        .addGap(406, 406, 406)
+                        .addComponent(lblMessage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnFix))
+                    .addComponent(jTabbedPane1)
+                    .addComponent(pnlFolder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(pnlFolder1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(pnlFolder, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(pnlData, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnFix, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -241,7 +332,6 @@ public class Index extends javax.swing.JFrame {
 
     private void SearchingFolder() {
         try {
-
             txtFolderProyect.setText(chooser.getStrPath());
             btnRead.setEnabled(true);
         } catch (Exception ex) {
@@ -254,7 +344,6 @@ public class Index extends javax.swing.JFrame {
         chooser = new JFolderChooser();
         chooser.OpenChooser("");
         SearchingFolder();
-
     }//GEN-LAST:event_btnSearchActionPerformed
 
     private void txtFolderProyectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFolderProyectActionPerformed
@@ -262,7 +351,7 @@ public class Index extends javax.swing.JFrame {
     }//GEN-LAST:event_txtFolderProyectActionPerformed
 
     private void btnReadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReadActionPerformed
-        fileList = chooser.getFileList();
+        fileList = chooser.getFileList(true);
 
         TableModel model = tblData.getModel();
 
@@ -286,28 +375,16 @@ public class Index extends javax.swing.JFrame {
     }//GEN-LAST:event_btnReadActionPerformed
 
     private void btnFixActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFixActionPerformed
-        btnSearchXML.setEnabled(false);
-        String[] arrData = {txtFolderProyect.getText(), txtXMLFile.getText()};
+        //btnSearchXML.setEnabled(false);
+        String[] arrData = {txtFolderProyect.getText()};
         lblMessage.setText("Trabajando...");
         MetadataParser.main(arrData);
 
     }//GEN-LAST:event_btnFixActionPerformed
 
-    private void btnSearchXMLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchXMLActionPerformed
-        JFileChooser jchus = new JFileChooser();
-        jchus.setCurrentDirectory(new java.io.File("."));
-        jchus.setFileFilter(new FileNameExtensionFilter("metadata.xml", "xml"));
-        jchus.showDialog(this, null);
-        try {
-            txtXMLFile.setText(jchus.getSelectedFile().getAbsolutePath());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }//GEN-LAST:event_btnSearchXMLActionPerformed
-
-    private void txtXMLFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtXMLFileActionPerformed
+    private void chkCopyAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkCopyAllActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtXMLFileActionPerformed
+    }//GEN-LAST:event_chkCopyAllActionPerformed
 
     /**
      * @param args the command line arguments
@@ -348,13 +425,16 @@ public class Index extends javax.swing.JFrame {
     private javax.swing.JButton btnFix;
     private javax.swing.JButton btnRead;
     private javax.swing.JButton btnSearch;
-    private javax.swing.JButton btnSearchXML;
+    private javax.swing.JCheckBox chkCopyAll;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JLabel lblMessage;
     private javax.swing.JScrollPane pnlData;
     private javax.swing.JPanel pnlFolder;
-    private javax.swing.JPanel pnlFolder1;
     private javax.swing.JTable tblData;
     private javax.swing.JTextField txtFolderProyect;
-    private javax.swing.JTextField txtXMLFile;
     // End of variables declaration//GEN-END:variables
 }
