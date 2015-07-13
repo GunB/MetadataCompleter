@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package model;
 
 import java.io.IOException;
@@ -11,13 +6,17 @@ import javax.xml.transform.TransformerException;
 import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 
-/**
- *
- * @author hangarita
- */
-public interface ElementHandler {
-
-    Document Read() throws IOException, SAXException, ParserConfigurationException;
-
-    public void WriteFinish(Document doc) throws IOException, TransformerException;
+public abstract interface ElementHandler
+{
+  public abstract Document Read()
+    throws IOException, SAXException, ParserConfigurationException, NullPointerException;
+  
+  public abstract void WriteFinish(Document paramDocument)
+    throws IOException, TransformerException;
 }
+
+
+/* Location:              C:\Users\hangarita\Desktop\eFixer.jar!\model\ElementHandler.class
+ * Java compiler version: 8 (52.0)
+ * JD-Core Version:       0.7.1
+ */
