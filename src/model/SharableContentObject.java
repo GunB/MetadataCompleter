@@ -36,9 +36,7 @@ public class SharableContentObject {
     Node ndRelation;
 
     ArrayList<SharableContentObject> objElements;
-
     HashMap<String, String> arrData;
-
     ElementHandler eleData;
     
     String strNode
@@ -99,7 +97,9 @@ public class SharableContentObject {
             strResp = "Objeto".toUpperCase();
         } else if (strID1.contains("le")) {
             strResp = "Leccion".toUpperCase();
-        } else
+        } else {
+            strResp = "Nivel".toUpperCase();
+        }
 
         System.out.println("Found DATA [" + "Type" + "]: " + strResp);
 
@@ -109,32 +109,26 @@ public class SharableContentObject {
 //</editor-fold>
     public SharableContentObject(ElementHandler eleData) throws IOException, SAXException, ParserConfigurationException {
         this.eleData = eleData;
-
         docXML = eleData.Read();
         //optional, but recommended
         //read this - http://stackoverflow.com/questions/13786607/normalization-in-dom-parsing-with-java-how-does-it-work
         docXML.getDocumentElement().normalize();
         System.out.println("Root element :" + docXML.getDocumentElement().getNodeName());
-
         ndRelation = DocumentBuilderFactory
                 .newInstance()
                 .newDocumentBuilder()
                 .parse(new ByteArrayInputStream(strNode.getBytes()))
                 .getDocumentElement();
-
         ReadElement();
     }
 
     private void ReadElement() {
-
         Node ndRoot = docXML.getDocumentElement().cloneNode(true);
         NodeList list = ndRoot.getChildNodes();
-
         this.strID = ReadNode(list, new ArrayList<>(Arrays.asList("general", "identifier", "catalog")));
         this.strNombre = ReadNode(list, new ArrayList<>(Arrays.asList("general", "title")));
         this.strDesc = ReadNode(list, new ArrayList<>(Arrays.asList("general", "description")));
         this.strType = GetType(this);
-
     }
 
     public void SetRelation(SharableContentObject scoObjeto, String strKind) {
@@ -143,7 +137,6 @@ public class SharableContentObject {
         ndListTemp = ChangeNode(ndListTemp, new ArrayList<>(Arrays.asList("kind")), strKind);
         ndListTemp = ChangeNode(ndListTemp, new ArrayList<>(Arrays.asList("resource", "identifier", "catalog")), scoObjeto.strID);
         ndListTemp = ChangeNode(ndListTemp, new ArrayList<>(Arrays.asList("resource", "description")), scoObjeto.strDesc);
-        //scoObjeto.getStrID();
         docXML.adoptNode(ndData);
         docXML.getDocumentElement().appendChild(ndData);
     }
