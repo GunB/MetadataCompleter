@@ -43,25 +43,6 @@ public class MetadataParser
     public MetadataParser() {
     }
 
-    public File CopyFolder(String strPathFolder) {
-        Log("Copiando archivos...");
-
-        File baseFileDirectory = new File(strPathFolder);
-
-        File newFileDirectory = new File(baseFileDirectory.getParent() + File.separator + "eFIXED_" + this.unixTime + " " + this.timeStamp);
-
-        newFileDirectory.mkdirs();
-        try {
-            FilesUtility.copyFolder(baseFileDirectory, newFileDirectory);
-        } catch (IOException ex) {
-            Logger.getLogger(MetadataParser.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(null, ex);
-            System.exit(9);
-        }
-
-        return newFileDirectory;
-    }
-
     public static void main(String[] args) {
         new MetadataParser().Exec(args);
     }
@@ -299,7 +280,8 @@ public class MetadataParser
 
     public void run() {
         if (this.isCopy) {
-            File CopyFolder = CopyFolder(this.strPath);
+            File CopyFolder = FilesUtility.CopyFolder(this.strPath);
+            Log("Copiando archivos...");
             this.strPath = CopyFolder.getPath();
             String[] strparams = {this.strPath};
 

@@ -1,5 +1,6 @@
 package utiility;
 
+import bin.MetadataParser;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -13,9 +14,17 @@ import java.nio.file.FileStore;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileSystemView;
 
 public class FilesUtility {
+    
+    private static long unixTime = System.currentTimeMillis() / 1000L;
+    private static String timeStamp = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss").format(Calendar.getInstance().getTime());
 
     public static void copyFolder(File src, File dest)
             throws IOException {
@@ -89,6 +98,26 @@ public class FilesUtility {
         }
 
         return file;
+    }
+    
+    public static File CopyFolder(String strPathFolder) {
+
+        File baseFileDirectory = new File(strPathFolder);
+
+        File newFileDirectory = 
+                new File(baseFileDirectory.getParent() + File.separator 
+                        + "eFIXED_" + FilesUtility.unixTime + " " + FilesUtility.timeStamp);
+
+        newFileDirectory.mkdirs();
+        try {
+            FilesUtility.copyFolder(baseFileDirectory, newFileDirectory);
+        } catch (IOException ex) {
+            Logger.getLogger(MetadataParser.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, ex);
+            System.exit(9);
+        }
+
+        return newFileDirectory;
     }
 
     public static void printFileStore(FileStore filestore, String path) throws IOException {
